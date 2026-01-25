@@ -1,0 +1,122 @@
+-----INFORMATION-----,,,,,
+A,ApplicationROMID,F,F,,
+B,BootloaderROMID,F,F,,
+C,ConfigurationFileID,F,F,,
+D,RemoteDisplayVersion,F,F,,
+E,SmartEASVersion,F,F,,
+F,FPGAVersion,F,F,,
+H,HardwareID,F,F,,
+I,Interface,T,F,05,RS232
+I,Interface,T,F,5,RS232
+I,Interface,T,F,10,USB-COM-DL
+I,Interface,T,F,20,SCRS232
+I,Interface,T,F,45,USB-OEM
+I,Interface,T,F,47,USB-COM
+I,Interface,T,F,77,USB-HID
+I,Interface,T,F,4D,USB-COMPOSITE
+I,Interface,T,F,1e,USB-COM-SC
+L,SecondScannerVersion,F,F,,
+M,TopModelNumber,F,F,,
+N,NumConnSatDevices,F,F,,
+P,IPEAppVersion,F,F,,
+Q,SDRAMCfgVersion,F,F,,
+R,ApplicationRevisionLevel,F,F,,
+S,SerialNumber,F,F,,
+T,TDRType,T,F,I1,T7 IR TDR
+T,TDRType,T,F,I2,T8.2 IR TDR
+T,TDRType,T,F,I3,T9 IR TDR
+T,TDRType,T,F,I4,T12 IR TDR
+T,TDRType,T,F,I,Unknown TDR Status
+T,TDRType,T,F,N1,7 Standard TDR
+T,TDRType,T,F,N2,8.2 Standard TDR
+T,TDRType,T,F,N3,9 Standard TDR
+T,TDRType,T,F,N4,12 Standard TDR
+T,TDRType,T,F,N,Unknown TDR Status
+T,TDRType,T,F,L0,Legacy TDR (height unknown)
+T,TDRType,T,F,LO,Legacy TDR (height unknown)
+T,TDRType,T,F,L,Unknown TDR Status
+T,TDRType,T,F,U0,TDR present: undefined height
+T,TDRType,T,F,U,Unknown TDR Status
+T,TDRType,T,F,??,TDR present: not ready yet
+T,TDRType,T,F,?,Unknown
+T,TDRType,T,F,NA,Not Applicable
+U,UniversalInterfaceApplicationROMID,F,F,,
+V,VisionLibraryVersion,F,F,,
+W,InternalScaleInformation,F,F,,
+X,SecondModelNumber,F,F,,
+Y,SecondSerialNumber,F,F,,
+Z,SecondSoftwareVersionNumber,F,F,,
+a,SatelliteAssemblySerial,F,T,,
+b,SecondScannerBootloader,F,F,,
+c,UIHardwareType,F,F,,
+d,DWMSDKVersion,F,F,,
+f,TDRFPGAVersion,F,F,,
+h,ConnectedDevices,F,F,,
+k,UIHardwareDensity,F,F,,
+l,USBLoaderVersion,F,F,,
+m,MainBoardNumber,F,F,,
+n,SatelliteDeviceType,T,T,T,TDR
+n,SatelliteDeviceType,T,T,O,CCMH
+n,SatelliteDeviceType,T,T,o,CCMV
+p,SatellitePCBSerial,F,T,,
+q,SoftwareID,F,F,,
+r,RFScannerRadioVersion,F,F,,
+s,HandheldSerialNumber,F,F,,
+t,FormatterVersion,F,F,,
+u,UniversalInterfaceBootloaderROMID,F,F,,
+v,VirtualScanLineLibraryVersion,F,F,,
+x,SatelliteFocusedSerial,F,T,,
+z,SatelliteSoftwareVer,F,T,,
+-----HEALTH-----,,,,,
+0,IPE0Health,F,F,,
+1,IPE1Health,F,F,,
+2,IPE2Health,F,F,,
+3,IPE3Health,F,F,,
+D,USBSerialDongleConnected,F,F,,
+H,USBHandheldConnected,F,F,,
+O,CCMHConnectionStatus,F,F,,
+S,ScaleSentryHealth,F,F,,
+T,TDRConnectionStatus,F,F,,
+c,CameraHealth,F,F,,
+d,RemoteDisplayHealth,F,F,,
+e,EASSystemHealth,F,F,,
+h,HorizontalLaserHealth,F,F,,
+i,ImagerHealth,F,T,,
+m,MotorHealth,F,F,,
+o,CCMVConnectionStatus,F,F,,
+r,RadioHealth,F,F,,
+s,ScaleHealth,F,F,,
+v,VerticalLaserHealth,F,F,,
+-----STATISTICS-----,,,,,
+B,NumberBatteryChargingCycles,F,F,,
+C,CustomData,F,F,,
+D,Forced2DResets,F,F,,
+E,EASDeactivateCount,F,F,,
+H,HorizontalIPEForcedResets,F,F,,
+I,BaseIPEDisconnects,F,F,,
+K,NumberKeyPresses,F,F,,
+L,GoodScanCount,F,F,,
+O,CCMHDisconnects,F,F,,
+P,PowerOnHours,F,F,,
+Q,TDRForcedResets,F,F,,
+R,TotalResets,F,F,,
+S,ScaleSentryEvents,F,F,,
+T,NumberTriggerPulls,F,F,,
+V,VerticalIPEForcedResets,F,F,,
+X,EnforcedZeroEvents,F,F,,
+Y,EASRuntimeFaults,F,F,,
+Z,POSInitiatedZeroRequests,F,F,,
+b,BatteryHealth,F,F,,
+c,ScaleCalibrationAttempts,F,F,,
+d,Excessive2DResets,F,F,,
+e,EASManualCount,F,F,,
+h,HorizontalIPEExcessiveResets,F,F,,
+l,LaserOnTime,F,F,,
+m,MotorOnTime,F,F,,
+o,CCMVDisconnects,F,F,,
+q,TDRExcessiveResets,F,F,,
+r,ErrorResets,F,F,,
+s,BatteryChargeStatus,F,F,,
+t,TDRDisconnects,F,F,,
+v,VerticalIPEExcessiveResets,F,F,,
+z,ScaleZeroAttempts,F,F,,
