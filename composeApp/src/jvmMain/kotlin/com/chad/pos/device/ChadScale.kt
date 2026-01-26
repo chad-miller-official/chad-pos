@@ -7,10 +7,20 @@ import jpos.Scale
 import jpos.ScaleConst
 import jpos.events.StatusUpdateEvent
 import jpos.events.StatusUpdateListener
+import kotlinx.coroutines.delay
 
 private val displayText = mutableStateOf("--")
 
 class LiveWeightStatusUpdateListener(val scale: Scale) : StatusUpdateListener {
+  companion object {
+    val weightUnits = mapOf(
+      ScaleConst.SCAL_WU_GRAM to "grams",
+      ScaleConst.SCAL_WU_KILOGRAM to "kilograms",
+      ScaleConst.SCAL_WU_OUNCE to "ounces",
+      ScaleConst.SCAL_WU_POUND to "pounds",
+    )
+  }
+
   override fun statusUpdateOccurred(event: StatusUpdateEvent) {
     displayText.value = "--"
 
@@ -22,7 +32,7 @@ class LiveWeightStatusUpdateListener(val scale: Scale) : StatusUpdateListener {
         val liveWeight = try {
           scale.scaleLiveWeight
         } catch (ex: JposException) {
-          System.err.println("ERROR: Could not get weight data: ${ex.message}")
+          displayText.value = "Could not get weight data: ${ex.message}"
           return
         }
 
@@ -48,20 +58,10 @@ class LiveWeightStatusUpdateListener(val scale: Scale) : StatusUpdateListener {
     val weightWithUnits = if (weight == null) {
       "--.--"
     } else {
-      "$weight ${getWeightUnits()}"
+      "$weight ${weightUnits.getOrDefault(scale.weightUnit, "(unknown)")}"
     }
 
-    displayText.value = "$status: $weightWithUnits"
-  }
-
-  fun getWeightUnits(): String {
-    return when (scale.weightUnit) {
-      ScaleConst.SCAL_WU_GRAM -> "grams"
-      ScaleConst.SCAL_WU_KILOGRAM -> "kilograms"
-      ScaleConst.SCAL_WU_OUNCE -> "ounces"
-      ScaleConst.SCAL_WU_POUND -> "pounds"
-      else -> "pounds"
-    }
+    displayText.value = "$weightWithUnits [$status]"
   }
 }
 
@@ -73,64 +73,88 @@ object ChadScale {
     return displayText
   }
 
-  fun connect(profile: String, suppressErrors: Boolean = true): Boolean {
-    println("INFO: Connecting to scale...")
+  suspend fun connect(profile: String, suppressErrors: Boolean = true): Boolean {
+    displayText.value = "Connecting to scale..."
 
     try {
       scale.open(profile)
     } catch (ex: JposException) {
       if (!suppressErrors) {
-        System.err.println("ERROR: Failed to open scale: ${ex.message}")
+        displayText.value = "Failed to open scale: ${ex.message}"
       }
 
       return false
     }
 
+    displayText.value = "Claiming scale..."
+
     try {
       scale.claim(1000)
+    } catch (ex: JposException) {
+      if (!suppressErrors) {
+        displayText.value = "Failed to claim scale: ${ex.message}"
+      }
+
+      close()
+      return false
+    }
+
+    displayText.value = "Enabling scale..."
+
+    try {
       scale.statusNotify = ScaleConst.SCAL_SN_ENABLED
       scale.deviceEnabled = true
     } catch (ex: JposException) {
-      close()
-
       if (!suppressErrors) {
-        System.err.println("ERROR: Failed to connect to scale: ${ex.message}")
+        displayText.value = "Failed to enable scale: ${ex.message}"
       }
 
+      close()
       return false
     }
 
     scale.addStatusUpdateListener(statusUpdateListener)
-    println("INFO: Scale connected.")
+    displayText.value = "Scale connected."
 
     return true
   }
 
   fun disconnect(): Boolean {
-    println("INFO: Disconnecting scale...")
+    displayText.value = "Disconnecting scale..."
     scale.removeStatusUpdateListener(statusUpdateListener)
 
     try {
       scale.deviceEnabled = false
       scale.statusNotify = ScaleConst.SCAL_SN_DISABLED
+    } catch (ex: JposException) {
+      System.err.println("Failed to disconnect from scale: ${ex.message}")
+      return false
+    }
+
+    println("Releasing scale...")
+
+    try {
       scale.release()
     } catch (ex: JposException) {
-      System.err.println("ERROR: Failed to disconnect from scale: ${ex.message}")
+      System.err.println("Failed to release scale: ${ex.message}")
       return false
     }
 
     close()
-    println("INFO: Scale disconnected.")
 
+    println("Scale disconnected.")
     return true
   }
 
   private fun close(): Boolean {
+    println("Closing scale...")
+
     return try {
       scale.close()
+      println("Scale closed.")
       true
     } catch (ex: JposException) {
-      System.err.println("ERROR: Failed to close scale: ${ex.message}")
+      println("Failed to close scale: ${ex.message}")
       false
     }
   }
