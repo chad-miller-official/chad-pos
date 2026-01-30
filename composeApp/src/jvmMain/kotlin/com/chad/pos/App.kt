@@ -79,16 +79,10 @@ fun App() {
 
         Text(
           text = "Scanner",
-          style = TextStyle(
-            fontSize = 56.sp,
-            fontWeight = FontWeight.Bold,
-          ),
+          fontWeight = FontWeight.Bold,
         )
 
-        Text(
-          text = scannerDisplay,
-          fontSize = 36.sp,
-        )
+        Text(scannerDisplay)
       }
       Column(
         modifier = Modifier.padding(16.dp).weight(1f),
@@ -99,16 +93,10 @@ fun App() {
 
         Text(
           text = "Scale",
-          style = TextStyle(
-            fontSize = 56.sp,
-            fontWeight = FontWeight.Bold
-          ),
+          fontWeight = FontWeight.Bold,
         )
 
-        Text(
-          text = scaleDisplay,
-          fontSize = 36.sp,
-        )
+        Text(scaleDisplay)
       }
     }
   }

@@ -7,7 +7,6 @@ import jpos.Scale
 import jpos.ScaleConst
 import jpos.events.StatusUpdateEvent
 import jpos.events.StatusUpdateListener
-import kotlinx.coroutines.delay
 
 private val displayText = mutableStateOf("--")
 
