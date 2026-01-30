@@ -22,7 +22,7 @@ fun main() {
       state = rememberWindowState(placement = WindowPlacement.Fullscreen),
       title = "ChadPOS",
     ) {
-      App()
+      App(onExitApp = ::exitApplication)
     }
   }
 }

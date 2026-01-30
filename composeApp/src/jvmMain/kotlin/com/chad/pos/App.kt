@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -51,7 +52,7 @@ suspend fun initScale(jposScaleName: String) {
 
 @Composable
 @Preview
-fun App() {
+fun App(onExitApp: () -> Unit = {}) {
   val jposScannerName = stringResource(Res.string.scanner_name)
   val jposScaleName = stringResource(Res.string.scale_name)
   val coroutineScope = rememberCoroutineScope()
@@ -65,6 +66,11 @@ fun App() {
   }
 
   MaterialTheme {
+    Row(modifier = Modifier.padding(4.dp)) {
+      Button(onClick = onExitApp) {
+        Text("Exit")
+      }
+    }
     Row(
       horizontalArrangement = Arrangement.Center,
       modifier = Modifier.fillMaxSize(),
