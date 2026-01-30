@@ -26,13 +26,12 @@ kotlin {
     }
     jvmMain.dependencies {
       implementation(files("/usr/local/Datalogic/JavaPOS/JavaPOS.jar"))
-      implementation(fileTree(mapOf("dir" to "/usr/local/Datalogic/JavaPOS/SupportJars", "include" to listOf("*.jar", "*.so", "*.xml"))))
+      implementation(fileTree(mapOf("dir" to "/usr/local/Datalogic/JavaPOS/SupportJars", "include" to listOf("*.jar", "*.properties", "*.so", "*.xml"))))
       implementation(compose.desktop.currentOs)
       implementation(libs.kotlinx.coroutinesSwing)
     }
   }
 }
-
 
 compose.desktop {
   application {

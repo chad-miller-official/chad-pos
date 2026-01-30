@@ -8,7 +8,6 @@
     <vendor name="DLA" url="http://www.adc.datalogic.com"/>
     <jpos category="Scale" version="1.13"/>
     <product description="ScaleService" name="ScaleService" url="http://www.adc.datalogic.com"/>
-    <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
     <prop name="baudRate" type="String" value="9600"/>
     <prop name="canAcceptStatisticsCmd" type="String" value="False"/>
     <prop name="canCompareFirmwareVersion" type="String" value="False"/>
@@ -53,7 +52,6 @@
     <vendor name="DLA" url="http://www.adc.datalogic.com"/>
     <jpos category="Scanner" version="1.13"/>
     <product description="ScannerService" name="ScannerService" url="http://www.adc.datalogic.com"/>
-    <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
     <prop name="baudRate" type="String" value="9600"/>
     <prop name="canAcceptStatisticsCmd" type="String" value="True"/>
     <prop name="canCompareFirmwareVersion" type="String" value="True"/>
